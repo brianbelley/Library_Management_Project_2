@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "715741042186",
+    "firebase_url": "https://projectlibrary-70b9b-default-rtdb.firebaseio.com",
+    "project_id": "projectlibrary-70b9b",
+    "storage_bucket": "projectlibrary-70b9b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:715741042186:android:d6de8b1015d5a77e5ab1f3",
+        "android_client_info": {
+          "package_name": "com.example.library_management_project"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYBv9xVpOp4KKgXWIiU7b1Jtxsofj5oWg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
