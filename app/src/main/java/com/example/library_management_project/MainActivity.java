@@ -97,6 +97,8 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
     }
 
     private void searchBooks() {
+        Intent intent = new Intent(this, Search.class);
+        startActivity(intent);
     }
 
     private void addBooks() {
