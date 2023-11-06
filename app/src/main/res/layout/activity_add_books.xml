@@ -74,8 +74,8 @@
                 android:id="@+id/dateEditText"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:hint="Date Published"
-
+                android:hint="Date Published (yyyy-mm-dd)"
+                android:inputType="date"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/titleEditText"
@@ -89,6 +89,15 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/dateEditText"
+                android:layout_marginTop="32dp"/>
+            <Button
+                android:id="@+id/backButton"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/addButton"
                 android:layout_marginTop="32dp"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -102,7 +102,8 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
     }
 
     private void addBooks() {
-
+        Intent intent = new Intent( MainActivity.this, AddBooks.class);
+        startActivity(intent);
     }
 
     private void loggingOut() {
