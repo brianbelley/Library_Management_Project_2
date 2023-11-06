@@ -55,16 +55,16 @@ public class AddBooks extends AppCompatActivity {
               // String dateText = dateEditText.getText().toString();
 
 // Parse the date using SimpleDateFormat
-               SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+               /*SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
                Date selectedDate = null;
 
 
                try {
                    selectedDate = dateFormat.parse(dateBook);
-               } catch (ParseException e) {
+               } catch (Exception e) {
                    Toast.makeText(AddBooks.this,"Incorrect Date format, the format is: yyyy-mm-dd", Toast.LENGTH_SHORT).show();
-                   throw new RuntimeException(e);
-               }
+                   finish();
+               }*/
 
 
                if(isbnBook.isEmpty() || authorBook.isEmpty() || titleBook.isEmpty() || dateBook.isEmpty()){
@@ -73,8 +73,9 @@ public class AddBooks extends AppCompatActivity {
                }
 
                else {
-                   Book model = new Book( isbnBook, authorBook, titleBook, selectedDate);
+                   Book model = new Book( isbnBook, authorBook, titleBook, dateBook);
                    reference.child(isbnBook).setValue(model);
+
                    Toast.makeText(AddBooks.this, "Book added successfully", Toast.LENGTH_SHORT).show();
 
                }

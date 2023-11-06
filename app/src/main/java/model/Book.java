@@ -10,6 +10,7 @@ public class Book {
     private String title;
     private Date yearPublished;
 
+    private String yearPublishedStr;
 
 
     //Constructor
@@ -23,9 +24,25 @@ public class Book {
         this.yearPublished = yearPublished;
     }
 
+    public Book(String isbn, String author, String title, String yearPublishedStr) {
+
+        this.isbn = isbn;
+        this.author = author;
+        this.title = title;
+        this.yearPublishedStr = yearPublishedStr;
+    }
+
 
     //Getters and Setters
 
+
+    public String getYearPublishedStr() {
+        return yearPublishedStr;
+    }
+
+    public void setYearPublishedStr(String yearPublishedStr) {
+        this.yearPublishedStr = yearPublishedStr;
+    }
 
     public String getIsbn() {
         return isbn;
