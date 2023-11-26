@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
         //Set onclick listeners
         logoutButton.setOnClickListener(this);
         searchBooksButton.setOnClickListener(this);
+        addBooksButton.setOnClickListener(this);
 
         //SharedPref
         // Get the user's phone number from SharedPreferences
@@ -74,6 +75,28 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
             addBooksButton.setOnClickListener(this);
 
             displayUserBookData();
+
+            // Retrieve user type and conditionally show/hide addBooksButton
+            usersDatabase.child(currentUserPhoneNumber).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    String userType = dataSnapshot.child("type").getValue(String.class);
+
+                    if ("admin".equals(userType)) {
+                        // User is admin, show the addBooksButton
+                        addBooksButton.setVisibility(View.VISIBLE);
+                    } else {
+                        // User is not admin, hide the addBooksButton
+                        addBooksButton.setVisibility(View.GONE);
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Log.d("MainActivity", "Error fetching user type: " + databaseError.getMessage());
+                }
+            });
+
         } else {
             // Handle the case where the phone number is not available.
             // You can redirect the user to the login page or take other appropriate actions.
