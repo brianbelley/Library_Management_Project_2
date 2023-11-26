@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,6 +30,7 @@ public class Search extends AppCompatActivity {
     private Button backButton;
 
     private ListView resultListView;
+    private ArrayAdapter<Book> bookAdapter;
 
 
     @Override
@@ -39,13 +41,15 @@ public class Search extends AppCompatActivity {
         spn = findViewById(R.id.spinner);
 
         resultListView = findViewById(R.id.displayBooksListView);
+        bookAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, new ArrayList<>());
 
         searchSpinner = findViewById(R.id.spinner);
         searchButton = findViewById(R.id.searchBooksButton);
         backButton = findViewById(R.id.buttonBack);
 
+
         ArrayList<String> searchType = new ArrayList<String>();
-        searchType.add("IBM");
+        searchType.add("IBSN");
         searchType.add("Title");
         searchType.add("Author");
         ArrayAdapter<String> adapterSet = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, searchType);
@@ -91,7 +95,6 @@ public class Search extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 ArrayList<Book> bookList = new ArrayList<>();
-                ArrayAdapter bookAdapter = new ArrayAdapter<model.Book>(Search.this, android.R.layout.simple_list_item_1, bookList);
                 resultListView.setAdapter(bookAdapter);
                 if (snapshot.exists()) {
 
@@ -106,7 +109,29 @@ public class Search extends AppCompatActivity {
                         model.Book book = new model.Book(isbn, author, title, today);
                         bookList.add(book);
                     }
+
+                    // Create an adapter to display the books in a ListView
+                    ArrayAdapter<model.Book> bookAdapter = new ArrayAdapter<>(Search.this, android.R.layout.simple_list_item_1, bookList);
+                    resultListView.setAdapter(bookAdapter);
+
+                    // Set item click listener to handle selection
+                    resultListView.setOnItemClickListener((parent, view, position, id) -> {
+                        // Retrieve the selected item and extract ISBN
+                        model.Book selectedBook = bookList.get(position);
+                        String selectedIsbn = selectedBook.getIsbn();
+
+                        // Navigate to the Selected activity with the selected ISBN
+                        navigateToSelectedActivity(selectedIsbn);
+                    });
+                } else {
+                    // Handle the case where the book is not found
                 }
+            }
+            private void navigateToSelectedActivity(String isbn) {
+                Intent intent = new Intent(Search.this, Selected.class);
+                // Pass the selected ISBN to the Selected activity
+                intent.putExtra("isbn", isbn);
+                startActivity(intent);
             }
 
             @Override

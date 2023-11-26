@@ -54,7 +54,7 @@ public class AddBooks extends AppCompatActivity {
 
               // String dateText = dateEditText.getText().toString();
 
-// Parse the date using SimpleDateFormat
+                // Parse the date using SimpleDateFormat
                /*SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
                Date selectedDate = null;
 
